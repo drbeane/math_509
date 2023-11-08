@@ -54,7 +54,7 @@ def single_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[6,3], yscale=None
     f_values = [fn(x[0]) for x in param_list]
 
     x_grid = np.linspace(xlim[0], xlim[1], 100)
-    y_grid = fn(x_grid)a
+    y_grid = fn(x_grid)
 
     plt.figure(figsize=fs)
     plt.plot(x_grid, y_grid)
