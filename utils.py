@@ -52,7 +52,7 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
         return None, param_list
 
 
-def single_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[6,3], yscale=None):
+def one_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[6,3], yscale=None):
     f_values = [fn(x[0]) for x in param_list]
     import numpy as np
     import matplotlib.pyplot as plt
