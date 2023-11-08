@@ -1,6 +1,7 @@
 def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
                           threshold, mode='min', verbosity=0):
     import sympy as sym
+    import numpy as np
                             
     gradient = sym.derive_by_array(sym_fn, vars)
 
