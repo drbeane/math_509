@@ -1,6 +1,7 @@
 def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
                           threshold, mode='min', verbosity=0):
-
+    import sympy as sym
+                            
     gradient = sym.derive_by_array(sym_fn, vars)
 
     params = np.array(init_vals)
@@ -23,7 +24,7 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
 
         old_f_val = f_val
         sub_dict = {var:val for var, val in zip(vars, params)}
-        f_val = f.subs(sub_dict)
+        f_val = sym_fn.subs(sub_dict)
 
         if (verbosity > 0) and (i % verbosity == 0):
             param_str = ', '.join([f'{p:.4f}' for p in params])
