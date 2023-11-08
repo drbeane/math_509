@@ -54,6 +54,8 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
 
 def single_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[6,3], yscale=None):
     f_values = [fn(x[0]) for x in param_list]
+    import numpy as np
+    import matplotlib.pyplot as plt
 
     x_grid = np.linspace(xlim[0], xlim[1], 100)
     y_grid = fn(x_grid)
@@ -73,7 +75,9 @@ def single_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[6,3], yscale=None
     plt.show()
 
 def two_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[12,6], zoom=True):
-
+    import numpy as np
+    import matplotlib.pyplot as plt
+  
     # x and y coords for points along gradient path
     x_path = [float(params[0]) for params in param_list]
     y_path = [float(params[1]) for params in param_list]
