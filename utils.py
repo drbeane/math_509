@@ -35,7 +35,7 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
             found = True
             break
 
-        if abs(f_val) > 1e10:
+        if abs(f_val) > 1e20:
             break
 
     if verbosity > 0: print()
