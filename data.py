@@ -8,7 +8,7 @@ def generate_values():
     np.random.seed(597474)
     ep = np.random.normal(0, 0.75, N)
     y1 = 16 * (x1/1000) ** 5.8 * np.exp(ep)
-    y1 = y1.astype(int)
+    y1 = y1.round(4)
         
     X2, y2 = make_classification(n_samples=1000, n_classes=3, n_features=100, n_informative=20, 
                            n_redundant=10, class_sep=1.6, random_state=16)
