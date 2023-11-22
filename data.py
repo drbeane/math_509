@@ -20,4 +20,4 @@ def generate_values():
 
     return x1, y1, X2, y2, X3, Y3, X3_ones
 
-x1, y1, X2, y2, X3, Y3, X3_ones = generate_values()
+x1, y1, X2, y2, X3, y3, X3_ones = generate_values()
