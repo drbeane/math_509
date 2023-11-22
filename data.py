@@ -4,10 +4,11 @@ def generate_values():
   
     N = 1000
     np.random.seed(1)
-    x1 = np.random.normal(500, 100, N)
+    x1 = np.random.normal(500, 100, N).astype(int)
     np.random.seed(597474)
     ep = np.random.normal(0, 0.75, N)
     y1 = 16 * (x1/1000) ** 5.8 * np.exp(ep)
+    y1 = y1.astype(int)
         
     X2, y2 = make_classification(n_samples=1000, n_classes=3, n_features=100, n_informative=20, 
                            n_redundant=10, class_sep=1.6, random_state=16)
