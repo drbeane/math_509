@@ -18,6 +18,6 @@ def generate_values():
     y3 = X3 @ betas + np.random.normal(0, 400, 100)
     X3_ones = np.hstack([np.ones((100,1)), X3])
 
-    return x1, y1, X2, y2, X3, Y3, X3_ones
+    return x1, y1, X2, y2, X3, y3, X3_ones
 
 x1, y1, X2, y2, X3, y3, X3_ones = generate_values()
