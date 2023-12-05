@@ -1,5 +1,6 @@
 def generate_values():
     import numpy as np
+    from sklearn.datasets import make_classification
 
     ##########################################
     # Generate Naive Bayes Data
@@ -24,7 +25,12 @@ def generate_values():
     X1 = X1[sel, :]
     y1 = y1[sel]
 
-  
-    return X1, y1, None, None
+    ##########################################
+    # Generate Logistic Regression Data
+    ##########################################
+    X2, y2 = make_classification(n_samples=1000, n_features=4, n_informative=4, n_redundant=0, n_classes=2, random_state=7)
+
+    
+    return X1, y1, X2, y2
 
 X1, y1, X2, y2 = generate_values()
