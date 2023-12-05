@@ -25,6 +25,6 @@ def generate_values():
     y1 = y1[sel]
 
   
-    return x1, y1, None, None
+    return X1, y1, None, None
 
-x1, y1, X2, y2 = generate_values()
+X1, y1, X2, y2 = generate_values()
