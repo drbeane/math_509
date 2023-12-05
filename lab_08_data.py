@@ -22,7 +22,7 @@ def generate_values():
     sel = np.hstack([s0,s1])
     sel = np.random.choice(sel, size=10_000, replace=False)
 
-    X1 = X1[sel, :].round(3)
+    X1 = X1[sel, :]
     y1 = y1[sel]
 
     ##########################################
@@ -31,6 +31,6 @@ def generate_values():
     X2, y2 = make_classification(n_samples=1000, n_features=4, n_informative=4, n_redundant=0, n_classes=2, random_state=7)
 
     
-    return X1, y1, X2, y2
+    return X1, y1, X2.round(3), y2
 
 X1, y1, X2, y2 = generate_values()
