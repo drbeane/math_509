@@ -22,7 +22,7 @@ def generate_values():
     sel = np.hstack([s0,s1])
     sel = np.random.choice(sel, size=10_000, replace=False)
 
-    X1 = X1[sel, :]
+    X1 = X1[sel, :].round(3)
     y1 = y1[sel]
 
     ##########################################
