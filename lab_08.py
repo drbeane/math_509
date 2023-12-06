@@ -34,6 +34,8 @@ def generate_values():
     return X1, y1, X2.round(3), y2
 
 def unit_test_1():
+    global X2 
+    
     try:
         XE = add_ones(X2)
     except:
