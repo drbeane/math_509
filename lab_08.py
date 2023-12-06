@@ -68,7 +68,7 @@ def unit_test_2(predict_proba):
     
     try:
         p1 = predict_proba(X2, betas1)
-        p2 = predict_proba(X2, betas1)
+        p2 = predict_proba(X2, betas2)
     except:
         print('Function results in an error.')
         return
