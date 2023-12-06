@@ -45,14 +45,10 @@ def unit_test_1(add_ones):
         print(f'Returned object is not an array. It has type {type(XE)}.')
         return 
 
-    try:
-        if XE.shape != (1000, 5):
-            print('Shape of returned array is not correct.')
-            return
-    except:
-        print('Unable to determine array shape.')
+    if XE.shape != (1000, 5):
+        print('Shape of returned array is not correct.')
         return
-
+    
     if (XE[:,0] == 1).sum() != 1000:
         print('First column does not consist entirely of ones.')
         return
@@ -62,6 +58,41 @@ def unit_test_1(add_ones):
         return
     
     print('Tests passed.')
+
+
+def unit_test_2(predict_proba):
+    import numpy as np
+    global X2 
+    betas1 = [2, -1, -3, 2, 3]
+    betas2 = [5, 0, -4, 3, 5]
+    
+    try:
+        p1 = predict_proba(X2, betas1)
+        p2 = predict_proba(X2, betas1)
+    except:
+        print('Function results in an error.')
+        return
+
+    if not isinstance(p1, np.ndarray):
+        print(f'Returned object is not an array. It has type {type(p1)}.')
+        return 
+
+    if p1.shape != (1000,):
+        print('Shape of returned array is not correct.')
+        return
+
+    check1 = list(p1[:5].round(4)) == [0.2505, 0.996,  0.027,  0.0046, 0.1021]
+    check2 = list(p2[:5].round(4)) == [0.051, 0.9999, 0.5065, 0.0019, 0.4093]
+
+    if not (check1 and check2):
+        print('Probability estimates are incorrect.')
+        return
+
+    print('Tests passed.')
+
+
+def unit_test_3(calculate_NLL):
+    pass
 
 
 X1, y1, X2, y2 = generate_values()
