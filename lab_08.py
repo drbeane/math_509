@@ -33,4 +33,34 @@ def generate_values():
     
     return X1, y1, X2.round(3), y2
 
+def unit_test_1():
+    try:
+        XE = add_ones(X2)
+    except:
+        print('Function results in an error.')
+        return
+    
+    if not isinstance(XE, np.ndarray):
+        print(f'Returned object is not an array. It has type {type(XE)}.')
+        return 
+
+    try:
+        if XE.shape != (1000, 5):
+            print('Shape of returned array is not correct.')
+            return
+    except:
+        print('Unable to determine array shape.')
+        return
+
+    if (XE[:,0] == 1).sum() != 1000:
+        print('First column does not consist entirely of ones.')
+        return
+    
+    if np.sum(XE[:,1:] == X2) != 4000:
+        print('Returned array does not contain copy of feature array.')
+        return
+    
+    print('Tests passed.')
+
+
 X1, y1, X2, y2 = generate_values()
