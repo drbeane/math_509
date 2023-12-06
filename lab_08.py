@@ -57,7 +57,7 @@ def unit_test_1(add_ones):
         print('Returned array does not contain copy of feature array.')
         return
     
-    print('Tests passed.')
+    print('All tests passed.')
 
 
 def unit_test_2(predict_proba):
@@ -88,7 +88,7 @@ def unit_test_2(predict_proba):
         print('Probability estimates are incorrect.')
         return
 
-    print('Tests passed.')
+    print('All tests passed.')
 
 
 def unit_test_3(calculate_NLL):
@@ -119,7 +119,7 @@ def unit_test_3(calculate_NLL):
         print('NLL score returned is incorrect.')
         return
 
-    print('Tests passed.')
+    print('All tests passed.')
 
 
 
