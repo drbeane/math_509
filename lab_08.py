@@ -92,7 +92,35 @@ def unit_test_2(predict_proba):
 
 
 def unit_test_3(calculate_NLL):
-    pass
+    import numpy as np
+    global X2, y2
+    betas1 = [2, -1, -3, 2, 3]
+    betas2 = [5, 0, -4, 3, 5]
+
+    try:
+        nll1 = calculate_NLL(X2, y2, betas1)
+        nll2 = calculate_NLL(X2, y2, betas2)
+    except:
+        print('Function results in an error.')
+        return
+
+    
+    try:
+        nll1 = float(nll1)
+        nll2 = float(nll2)
+    except:
+        print('Returned value has non-numerical data type.')
+        return
+
+    check1 = round(nll1, 2) == 450.23
+    check2 = round(nll2, 2) == 184.13
+
+    if not (check1 and check2):
+        print('NLL score returned is incorrect.')
+        return
+
+    print('Tests passed.')
+
 
 
 X1, y1, X2, y2 = generate_values()
