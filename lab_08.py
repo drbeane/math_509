@@ -35,6 +35,8 @@ def generate_values():
 
 def unit_test_1():
     global X2 
+
+    XE = add_ones(X2)
     
     try:
         XE = add_ones(X2)
