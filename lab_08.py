@@ -12,8 +12,6 @@ def generate_values():
     p = 1 / (1 + np.exp(-z))
     y1 = np.where(p < 0.5, 0, 1)
 
-    print((y1 == 1).mean())
-
     Nspam = 462 + 500
     Nham = 10000 - Nspam
 
@@ -36,8 +34,6 @@ def generate_values():
 def unit_test_1(add_ones):
     import numpy as np
     global X2 
-
-    XE = add_ones(X2)
     
     try:
         XE = add_ones(X2)
