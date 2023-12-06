@@ -64,7 +64,7 @@ def unit_test_2(predict_proba):
     import numpy as np
     global X2 
     betas1 = [2, -1, -3, 2, 3]
-    betas2 = [5, 0, -4, 3, 5]
+    betas2 = [5, 1, -4, 3, 5]
     
     try:
         p1 = predict_proba(X2, betas1)
@@ -82,7 +82,7 @@ def unit_test_2(predict_proba):
         return
 
     check1 = list(p1[:5].round(4)) == [0.2505, 0.996,  0.027,  0.0046, 0.1021]
-    check2 = list(p2[:5].round(4)) == [0.051, 0.9999, 0.5065, 0.0019, 0.4093]
+    check2 = list(p2[:5].round(4)) == [0.0166, 0.9998, 0.9388, 0.0009, 0.662]
 
     if not (check1 and check2):
         print('Probability estimates are incorrect.')
@@ -95,7 +95,7 @@ def unit_test_3(calculate_NLL):
     import numpy as np
     global X2, y2
     betas1 = [2, -1, -3, 2, 3]
-    betas2 = [5, 0, -4, 3, 5]
+    betas2 = [5, 1, -4, 3, 5]
 
     try:
         nll1 = calculate_NLL(X2, y2, betas1)
@@ -113,7 +113,7 @@ def unit_test_3(calculate_NLL):
         return
 
     check1 = round(nll1, 2) == 450.23
-    check2 = round(nll2, 2) == 184.13
+    check2 = round(nll2, 2) == 118.16
 
     if not (check1 and check2):
         print('NLL score returned is incorrect.')
