@@ -44,14 +44,14 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
     if verbosity > 0: print()
     if found:
 
-        print(f'Algorithm converged in {i} steps.')
+        print(f'Algorithm terminated after {i} steps.')
         param_str = ', '.join([f'{p:.4f}' for p in params])
         print(f'Final parameter estimates: [{param_str}]')
         print(f'Optimal value: {f_val:.4f}')
         return params, param_list
 
     else:
-        print('Algorithm did not converge.')
+        print('Maximum iterations reached without algorithm terminating.')
         return None, param_list
 
 
