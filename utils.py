@@ -15,6 +15,7 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
     f_val = sym_fn.subs(sub_dict)
 
     found = False
+    div = False
 
     for i in range(1, max_iter+1):
         grad = gradient.subs(sub_dict)
@@ -34,24 +35,38 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
             param_str = ', '.join([f'{p:.4f}' for p in params])
             print(f'Iteration {i:03}:  params = [{param_str}],  f(params) = {f_val:.4f}')
 
-        if abs(old_f_val - f_val) < threshold:
+        df = abs(old_f_val - f_val)
+        max_grad = max([abs(c) for c in grad])
+        
+        if df < threshold and max_grad < threshold:
             found = True
             break
 
         if abs(f_val) > 1e20:
+            div = True
             break
 
-    if verbosity > 0: print()
+
+    if verbosity > 0: 
+        print()
     if found:
 
         print(f'Algorithm terminated after {i} steps.')
         param_str = ', '.join([f'{p:.4f}' for p in params])
         print(f'Final parameter estimates: [{param_str}]')
         print(f'Optimal value: {f_val:.4f}')
+        print()
         return params, param_list
 
     else:
-        print('Maximum iterations reached without algorithm terminating.')
+        print('🛑 No local extremum found.🛑')
+        if div: 
+            print('Algorithm terminated due to function values getting extremely large.')
+            print('This indicates that the algorithm is diverging.') 
+            print('Consider reducing the learning rate.\n')
+        else:
+            print('Maximum iterations reached without algorithm converging.')
+            print('Consider increasing the learning rate.\n')
         return None, param_list
 
 
@@ -134,3 +149,29 @@ def two_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[12,6], zoom=True):
         plt.grid()
 
     plt.show()
+
+
+
+if __name__ == '__main__':
+    import sympy as sym
+    from math import e
+    
+    f = lambda x : 100*x**4 + 200*x**3 - 800*x**2 + 500*x + 1000
+    x = sym.Symbol('x')
+    f_sym = f(x)
+    f_vars = [x]
+    
+    params, param_list = gradient_optimization(
+        sym_fn = -x**4 + 3*x**3 + 2,
+        vars = [x],
+        init_vals = [3],
+        alpha = 0.0000000001,
+        mode = 'min',
+        max_iter = 100,
+        threshold = 0.0001,
+        verbosity = 5
+    )
+    
+    #one_var_grad_plot(f, vars, param_list, xlim=[-5,4], ylim=[-6000, 10000])
+
+    #two_var_grad_plot(g, vars, param_list, xlim=[-5, 5], ylim=[-5, 5])
