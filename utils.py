@@ -37,7 +37,7 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
 
         if (verbosity > 0) and (i % verbosity == 0):
             param_str = ', '.join([f'{p:.4f}' for p in params])
-            print(f'Iteration {i:03}:  params = [{param_str}],  f(params) = {f_val:.4f}, {grad_norm=:.4f} ')
+            print(f'Iteration {i:03}:  params = [{param_str}],  f(params) = {f_val:.4f}')
 
         if df < threshold and grad_norm < 0.5:
             found = True
