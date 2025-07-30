@@ -31,14 +31,15 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
         sub_dict = {var:val for var, val in zip(vars, params)}
         f_val = sym_fn.subs(sub_dict)
 
-        if (verbosity > 0) and (i % verbosity == 0):
-            param_str = ', '.join([f'{p:.4f}' for p in params])
-            print(f'Iteration {i:03}:  params = [{param_str}],  f(params) = {f_val:.4f}')
-
         df = abs(old_f_val - f_val)
         max_grad = max([abs(c) for c in grad])
-        
-        if df < threshold and max_grad < threshold:
+        grad_norm = np.sum([c**2 for c in grad])**0.5
+
+        if (verbosity > 0) and (i % verbosity == 0):
+            param_str = ', '.join([f'{p:.4f}' for p in params])
+            print(f'Iteration {i:03}:  params = [{param_str}],  f(params) = {f_val:.4f}, {grad_norm=:.4f} ')
+
+        if df < threshold and grad_norm < 0.5:
             found = True
             break
 
@@ -150,28 +151,3 @@ def two_var_grad_plot(fn, vars, param_list, xlim, ylim, fs=[12,6], zoom=True):
 
     plt.show()
 
-
-
-if __name__ == '__main__':
-    import sympy as sym
-    from math import e
-    
-    f = lambda x : 100*x**4 + 200*x**3 - 800*x**2 + 500*x + 1000
-    x = sym.Symbol('x')
-    f_sym = f(x)
-    f_vars = [x]
-    
-    params, param_list = gradient_optimization(
-        sym_fn = -x**4 + 3*x**3 + 2,
-        vars = [x],
-        init_vals = [3],
-        alpha = 0.0000000001,
-        mode = 'min',
-        max_iter = 100,
-        threshold = 0.0001,
-        verbosity = 5
-    )
-    
-    #one_var_grad_plot(f, vars, param_list, xlim=[-5,4], ylim=[-6000, 10000])
-
-    #two_var_grad_plot(g, vars, param_list, xlim=[-5, 5], ylim=[-5, 5])
