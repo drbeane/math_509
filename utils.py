@@ -64,10 +64,10 @@ def gradient_optimization(sym_fn, vars, init_vals, alpha, max_iter,
         if div: 
             print('Algorithm terminated due to function values getting extremely large.')
             print('This indicates that the algorithm is diverging.') 
-            print('Consider reducing the learning rate.\n')
+            #print('Consider reducing the learning rate.\n')
         else:
             print('Maximum iterations reached without algorithm converging.')
-            print('Consider increasing the learning rate.\n')
+            #print('Consider increasing the learning rate.\n')
         return None, param_list
 
 
